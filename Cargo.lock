@@ -3,5 +3,27 @@
 version = 4
 
 [[package]]
+name = "find_factorial"
+version = "0.1.0"
+
+[[package]]
+name = "matrix_transposition"
+version = "0.1.0"
+
+[[package]]
 name = "piscine-rust"
+version = "0.1.0"
+dependencies = [
+ "find_factorial",
+ "matrix_transposition",
+ "scalar",
+ "temperature_conv",
+]
+
+[[package]]
+name = "scalar"
+version = "0.1.0"
+
+[[package]]
+name = "temperature_conv"
 version = "0.1.0"

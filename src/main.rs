@@ -1,38 +1,36 @@
-
-use temperature_conv::*;
+use matrix_transposition::*;
 
 fn main() {
-    println!("{} F = {} C", -459.67, fahrenheit_to_celsius(-459.67));
-    println!("{} C = {} F", 0.0, celsius_to_fahrenheit(0.0));
+    let matrix = Matrix((1, 3), (4, 5));
+    println!("Original matrix {:?}", matrix);
+    println!("Transpose matrix {:?}", transpose(matrix));
 }
-
 #[cfg(test)]
 mod tests {
-    use temperature_conv::*;
+    use matrix_transposition::*;
 
-    use std::f64::EPSILON;
-
-    fn eql(a: f64, b: f64) -> bool {
-        (b - a).abs() < EPSILON
+    #[test]
+    fn transpose_zero() {
+        let m = Matrix((0, 0), (0, 0));
+        let m = transpose(m);
+        assert_eq!(m, Matrix((0, 0), (0, 0)));
     }
 
     #[test]
-    fn test_f_to_c() {
-        let temp_f = 20.0;
-        println!("{}°F = {}°C", temp_f, fahrenheit_to_celsius(temp_f));
-        assert!(eql(fahrenheit_to_celsius(temp_f), -6.666666666666666));
-        let temp_f = 83.0;
-        println!("{}°F = {}°C", temp_f, fahrenheit_to_celsius(temp_f));
-        assert!(eql(fahrenheit_to_celsius(temp_f), 28.333333333333332));
+    fn transpose_identity() {
+        let m = Matrix((1, 0), (0, 1));
+        let m = transpose(m);
+        assert_eq!(m, Matrix((1, 0), (0, 1)));
     }
 
     #[test]
-    fn test_c_to_f() {
-        let temp_c = 27.0;
-        println!("{}°C = {}°F", temp_c, fahrenheit_to_celsius(temp_c));
-        assert!(eql(celsius_to_fahrenheit(27.0), 80.6));
-        let temp_c = 0.0;
-        println!("{}°C = {}°F", temp_c, fahrenheit_to_celsius(temp_c));
-        assert!(eql(celsius_to_fahrenheit(temp_c), 32.0))
+    fn transpose_other_cases() {
+        let m = Matrix((1, 3), (4, 5));
+        let m = transpose(m);
+        assert_eq!(m, Matrix((1, 4), (3, 5)));
+
+        let m = Matrix((6, 80), (12, 3));
+        let m = transpose(m);
+        assert_eq!(m, Matrix((6, 12), (80, 3)));
     }
 }

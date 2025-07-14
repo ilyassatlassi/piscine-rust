@@ -4,3 +4,7 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+scalar = {path="scalar"}
+temperature_conv = {path="temperature_conv"}
+find_factorial = {path="find_factorial"}
+matrix_transposition = {path= "matrix_transposition"}
