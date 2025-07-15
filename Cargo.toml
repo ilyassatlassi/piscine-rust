@@ -1,3 +1,4 @@
+workspace = { members = ["borrow"] }
 [package]
 name = "piscine-rust"
 version = "0.1.0"
@@ -8,3 +9,4 @@ scalar = {path="scalar"}
 temperature_conv = {path="temperature_conv"}
 find_factorial = {path="find_factorial"}
 matrix_transposition = {path= "matrix_transposition"}
+borrow = {path ="borrow"}
