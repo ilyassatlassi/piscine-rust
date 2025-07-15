@@ -1,4 +1,4 @@
-workspace = { members = ["borrow"] }
+workspace = { members = ["borrow", "doubtful", "to_url"] }
 [package]
 name = "piscine-rust"
 version = "0.1.0"
