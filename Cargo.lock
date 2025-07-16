@@ -19,6 +19,10 @@ name = "matrix_transposition"
 version = "0.1.0"
 
 [[package]]
+name = "name_initials"
+version = "0.1.0"
+
+[[package]]
 name = "piscine-rust"
 version = "0.1.0"
 dependencies = [
