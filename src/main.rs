@@ -1,13 +1,19 @@
-fn initials(names: Vec<&str>) -> Vec<String> {
-names.into_iter().map(|val| {
-    match val.split_once(" "){
-        Some((first, last)) => format!("{}. {}.", first.chars().next().unwrap(), last.chars().next().unwrap()),
-        None => String::new(),
+fn first_subword(mut s: String) ->String {
+    for (i, c) in s.chars().enumerate() {
+        if i > 0  && (c.is_uppercase() || c == '_') {
+         return  s[0..i].to_string()
+        }
     }
-}).collect()
+    s
 }
-
 fn main() {
-    let names = vec!["Harry Potter", "Someone Else", "J. L.", "Barack Obama"];
-    println!("{:?}", initials(names));
+    let s1 = "helloWorld";
+    let s2 = "snake_case";
+    let s3 = "CamelCase";
+    let s4 = "just";
+
+    println!("first_subword({}) = {}", s1, first_subword(s1.to_string()));
+    // println!("first_subword({}) = {}", s2, first_subword(s2.to_owned()));
+    // println!("first_subword({}) = {}", s3, first_subword(s3.to_owned()));
+    // println!("first_subword({}) = {}", s4, first_subword(s4.to_owned()));
 }
