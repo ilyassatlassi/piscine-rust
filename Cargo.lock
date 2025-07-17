@@ -7,6 +7,10 @@ name = "borrow"
 version = "0.1.0"
 
 [[package]]
+name = "borrow_me_the_reference"
+version = "0.1.0"
+
+[[package]]
 name = "copy"
 version = "0.1.0"
 
