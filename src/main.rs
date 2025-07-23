@@ -1,45 +1,108 @@
-fn main() {
-    let a = inv_pyramid(String::from("#"), 1);
-    let b = inv_pyramid(String::from("a"), 2);
-    let c = inv_pyramid(String::from(">"), 5);
-    let d = inv_pyramid(String::from("&"), 8);
+// use core::num;
 
-    for v in a.iter() {
-        println!("{:?}", v);
-    }
-    for v in b.iter() {
-        println!("{:?}", v);
-    }
-    for v in c.iter() {
-        println!("{:?}", v);
-    }
-    for v in d.iter() {
-        println!("{:?}", v);
-    }
+fn main() {
+    let args: Vec<String> = std::env::args().collect();
+
+    rpn(&args[1]);
 }
-pub fn inv_pyramid(v: String, i: u32) -> Vec<String> {
-    let mut res = Vec::new();
-    for j in 0..i {
-        let mut space = String::new();
-        let mut str = String::new();
-        for _ in 0..j +1{
-            space.push(' ');
-        }
-        for _ in 0..j +1 {
-            str.push_str(&v);
-        }
-        res.push(space + &str);
+
+fn rpn(arg: &str) {
+    if arg.is_empty() {
+        println!("Error");
+        return;
     }
-    for j in 0..i - 1 {
-        let mut space = String::new();
-        let mut str = String::new();
-        for _ in 0..i - j - 1 {
-            space.push(' ');
+    let mut nums = Vec::new();
+    let mut operation = Vec::new();
+    for arg in arg.split_whitespace() {
+        let mut number = String::new();
+        for c in arg.chars() {
+            if c.is_ascii_digit() {
+                number.push(c);
+            } else if c == '+' || c == '-' || c == '*' || c == '/' || c == '%' {
+                operation.push(c);
+            } else {
+                println!("Error");
+                return;
+            }
         }
-        for _ in 0..i - j -1 {
-            str.push_str(&v);
+        if !number.is_empty() {
+           nums.push(number.parse::<i32>().unwrap()); 
         }
-        res.push(space + &str);
     }
-    res
+    if nums.len() - 1 != operation.len() {
+        println!("Error");
+        return;
+    }
+    let mut res = nums[0];
+    for i in 0..operation.len() {
+        if operation[i] == '+' {
+            res += nums[i + 1]
+        }
+
+        if operation[i] == '-' {
+            res -= nums[i + 1]
+        }
+
+        if operation[i] == '*' {
+            res *= nums[i + 1]
+        }
+
+        if operation[i] == '/' {
+            res /= nums[i + 1]
+        }
+
+        if operation[i] == '%' {
+            res %= nums[i + 1]
+        }
+    }
+    println!("{}", res)
+}
+
+#[cfg(test)]
+mod tests {
+    use std::process::Command;
+
+    const MANIFEST_PATH: &str = "../src/test.rs";
+
+    fn run(s: &str) -> String {
+        let output = Command::new("cargo")
+            .arg("run")
+            .arg("--manifest-path")
+            .arg(MANIFEST_PATH)
+            .arg(s)
+            .output()
+            .expect("Failed to execute command");
+
+        String::from_utf8(output.stdout).unwrap()
+    }
+
+    #[test]
+    fn error_tests() {
+        assert_eq!("Error\n", run("21 3 2 % 2 3 2 *"));
+        assert_eq!("Error\n", run("1 2 3 4 +"));
+        assert_eq!("Error\n", run("324   +    1 - 23 "));
+        assert_eq!("Error\n", run("32   / 22"));
+        assert_eq!("Error\n", run("88 67 dks -"));
+    }
+
+    #[test]
+    fn simple_tests() {
+        assert_eq!("33\n", run("11 22 +"));
+        assert_eq!("72\n", run("11016 153 /"));
+        assert_eq!("1140\n", run("15 76 *"));
+        assert_eq!("-78539698\n", run("23491234 102030932 -"));
+    }
+
+    #[test]
+    fn complex_tests() {
+        assert_eq!("10\n", run("1 2 * 3 * 4 +"));
+        assert_eq!("2\n", run("3 1 2 * * 4 %"));
+        assert_eq!("0\n", run("5 10 2 / - 50 *"));
+    }
+
+    #[test]
+    fn with_spaces() {
+        assert_eq!("44\n", run("299   255 %"));
+        assert_eq!("1\n", run("     1      3 * 2 -"));
+    }
 }
