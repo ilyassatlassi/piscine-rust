@@ -23,6 +23,14 @@ name = "copy"
 version = "0.1.0"
 
 [[package]]
+name = "count_factorial"
+version = "0.1.0"
+
+[[package]]
+name = "counting_words"
+version = "0.1.0"
+
+[[package]]
 name = "doubtful"
 version = "0.1.0"
 
@@ -32,6 +40,15 @@ version = "0.1.0"
 
 [[package]]
 name = "matrix_multiplication"
+name = "insertion_sort"
+version = "0.1.0"
+
+[[package]]
+name = "inv_pyramid"
+version = "0.1.0"
+
+[[package]]
+name = "lucas_number"
 version = "0.1.0"
 
 [[package]]
@@ -40,6 +57,7 @@ version = "0.1.0"
 
 [[package]]
 name = "min_and_max"
+name = "modify_letter"
 version = "0.1.0"
 
 [[package]]
@@ -48,6 +66,10 @@ version = "0.1.0"
 
 [[package]]
 name = "ownership"
+version = "0.1.0"
+
+[[package]]
+name = "parts_sums"
 version = "0.1.0"
 
 [[package]]
@@ -63,10 +85,15 @@ dependencies = [
 
 [[package]]
 name = "reverse_it"
+name = "prev_prime"
 version = "0.1.0"
 
 [[package]]
 name = "scalar"
+version = "0.1.0"
+
+[[package]]
+name = "smallest"
 version = "0.1.0"
 
 [[package]]

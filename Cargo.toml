@@ -1,8 +1,8 @@
-workspace = { members = [ "arrange_it","borrow", "borrow_me_the_reference", "changes", "copy", "doubtful", "matrix_multiplication", "min_and_max", "name_initials", "ownership", "reverse_it", "string_literals", "tic_tac_toe", "to_url"] }
+workspace = { members = ["borrow", "borrow_me_the_reference", "copy", "count_factorial", "counting_words", "doubtful", "insertion_sort", "inv_pyramid", "lucas_number", "modify_letter",  "name_initials", "ownership", "parts_sums", "prev_prime", "smallest", "string_literals", "tic_tac_toe", "to_url"] }
 [package]
 name = "piscine-rust"
 version = "0.1.0"
-edition = "2021"
+edition = "2024"
 
 [dependencies]
 scalar = {path="scalar"}
