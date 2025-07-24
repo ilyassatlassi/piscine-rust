@@ -3,10 +3,6 @@
 version = 4
 
 [[package]]
-name = "arrange_it"
-version = "0.1.0"
-
-[[package]]
 name = "borrow"
 version = "0.1.0"
 
@@ -39,7 +35,6 @@ name = "find_factorial"
 version = "0.1.0"
 
 [[package]]
-name = "matrix_multiplication"
 name = "insertion_sort"
 version = "0.1.0"
 
@@ -56,7 +51,6 @@ name = "matrix_transposition"
 version = "0.1.0"
 
 [[package]]
-name = "min_and_max"
 name = "modify_letter"
 version = "0.1.0"
 
@@ -84,7 +78,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "reverse_it"
 name = "prev_prime"
 version = "0.1.0"
 
