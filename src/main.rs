@@ -1,6 +1,19 @@
+
 fn main() {
-let arr = [1, 2, 3];
-let arr1 = arr;
-print!("{:#?}", arr);
-    // player X won
+    println!("{}", arrange_phrase("is2 Thi1s T4est 3a"));
+}
+pub fn arrange_phrase(phrase: &str) -> String {
+    let mut words = Vec::new();
+    for word in phrase.split_whitespace() {
+        for c in word.chars() {
+            if c.is_digit(10) {
+            words.push((c.to_digit(10).unwrap(), word.replace(c, "")));
+            }
+        }
+        // if let Some(digit) = word.chars().find_map(|c| c.to_digit(10)) {
+        //     words.push((digit, word));
+        // }
+    };
+    words.sort_by_key(|x| x.0);
+    words.iter().map(|val| val.1.to_string()).collect::<Vec<_>>().join(" ")
 }

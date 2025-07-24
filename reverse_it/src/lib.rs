@@ -1,18 +1,22 @@
 pub fn reverse_it(v: i32) -> String {
-    let mut isNegative = false;
-    let mut num = v;
+    let mut is_Negative: bool = false;
+    let mut num: u32 = 0;
     if v < 0 {
-        num = -v;
-        isNegative = true;
+        num = v.unsigned_abs();
+        is_Negative = true;
+    } else {
+        num = v as u32;
     }
+
     let mut res: String = num.to_string().chars().rev().collect();
     let num = num.to_string();
     res.push_str(&num);
-    if isNegative {
+    if is_Negative {
         res.insert(0, '-');
     }
     res
 }
+
 #[test]
 fn reverse_it_test() {
     assert_eq!("321123", &reverse_it(123));
@@ -20,4 +24,6 @@ fn reverse_it_test() {
     assert_eq!("00", &reverse_it(0));
     assert_eq!("-321123", &reverse_it(-123));
     assert_eq!("11", &reverse_it(1));
+    assert_eq!("-84638474122147483648", &reverse_it(i32::MIN));
+    assert_eq!("74638474122147483647", &reverse_it(i32::MAX));
 }

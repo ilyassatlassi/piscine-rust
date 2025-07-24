@@ -3,11 +3,19 @@
 version = 4
 
 [[package]]
+name = "arrange_it"
+version = "0.1.0"
+
+[[package]]
 name = "borrow"
 version = "0.1.0"
 
 [[package]]
 name = "borrow_me_the_reference"
+version = "0.1.0"
+
+[[package]]
+name = "changes"
 version = "0.1.0"
 
 [[package]]
@@ -23,7 +31,15 @@ name = "find_factorial"
 version = "0.1.0"
 
 [[package]]
+name = "matrix_multiplication"
+version = "0.1.0"
+
+[[package]]
 name = "matrix_transposition"
+version = "0.1.0"
+
+[[package]]
+name = "min_and_max"
 version = "0.1.0"
 
 [[package]]
@@ -44,6 +60,10 @@ dependencies = [
  "scalar",
  "temperature_conv",
 ]
+
+[[package]]
+name = "reverse_it"
+version = "0.1.0"
 
 [[package]]
 name = "scalar"
