@@ -15,6 +15,10 @@ name = "changes"
 version = "0.1.0"
 
 [[package]]
+name = "circle"
+version = "0.1.0"
+
+[[package]]
 name = "copy"
 version = "0.1.0"
 
@@ -40,6 +44,10 @@ version = "0.1.0"
 
 [[package]]
 name = "inv_pyramid"
+version = "0.1.0"
+
+[[package]]
+name = "looping"
 version = "0.1.0"
 
 [[package]]
