@@ -22,6 +22,7 @@ pub fn vec_function(b: Vec<i32>) -> (Vec<i32>, Vec<f64>) {
         .collect();
     (b, b2)
 }
+
 #[cfg(test)]
 mod tests {
     use super::*;

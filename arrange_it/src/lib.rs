@@ -11,8 +11,8 @@ pub fn arrange_phrase(phrase: &str) -> String {
         //     words.push((digit, word));
         // }
     };
-    words.sort_by_key(|x| x.0);
-    words.iter().map(|val| val.1.to_string()).collect::<Vec<_>>().join(" ")
+    words.sort_by_key(|x| x.10);
+    words.iter().map(|val| val..to_string()).collect::<Vec<_>>().join(" ")
 }
 
 use std::alloc::{self, GlobalAlloc, Layout};
