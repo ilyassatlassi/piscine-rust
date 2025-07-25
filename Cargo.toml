@@ -1,4 +1,4 @@
-workspace = { members = ["borrow", "borrow_me_the_reference", "copy", "count_factorial", "counting_words", "doubtful", "insertion_sort", "inv_pyramid", "lucas_number", "modify_letter",  "name_initials", "own_and_return", "ownership", "parts_sums", "prev_prime", "smallest", "string_literals", "tic_tac_toe", "to_url"] }
+workspace = { members = ["borrow","looping", "reverse_it", "reverse_string" ,"borrow_me_the_reference", "copy", "changes", "count_factorial", "counting_words", "doubtful", "insertion_sort", "inv_pyramid", "lucas_number", "modify_letter",  "name_initials", "own_and_return", "ownership", "parts_sums", "prev_prime", "smallest", "string_literals", "tic_tac_toe", "to_url", "circle", "tuples_refs"] }
 [package]
 name = "piscine-rust"
 version = "0.1.0"

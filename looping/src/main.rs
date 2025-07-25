@@ -11,10 +11,9 @@ fn main() {
             .read_line(&mut guess)
             .expect("Failed to read line");
         counter += 1;
-        if guess.trim() == "The letter e" {
+        if guess == "The letter e\n" {
             println!("Number of trials: {counter}");
             break;
         }
     }
 }
-
