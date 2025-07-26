@@ -201,6 +201,10 @@ name = "reverse_string"
 version = "0.1.0"
 
 [[package]]
+name = "rpn"
+version = "0.1.0"
+
+[[package]]
 name = "scalar"
 version = "0.1.0"
 

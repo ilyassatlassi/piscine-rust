@@ -1,6 +1,3 @@
-
-// use core::num;
-
 fn main() {
     let args: Vec<String> = std::env::args().collect();
 
@@ -13,63 +10,55 @@ fn rpn(arg: &str) {
         return;
     }
     let mut nums = Vec::new();
-    let mut operation = Vec::new();
+    // let mut operation = Vec::new();
     for arg in arg.split_whitespace() {
-        let mut number = String::new();
-        for c in arg.chars() {
-            if c.is_ascii_digit() {
-                number.push(c);
-            } else if c == '+' || c == '-' || c == '*' || c == '/' || c == '%' {
-                operation.push(c);
-            } else {
-                println!("Error");
-                return;
+        match arg.parse::<i32>() {
+            Ok(num) => {
+                nums.push(num);
+            }
+            Err(_) => {
+                if "-*/+%".contains(arg) {
+                    if nums.len() < 2 {
+                        println!("Error");
+                        return;
+                    }
+                    let b = nums.pop().unwrap();
+                    let a = nums.pop().unwrap();
+                    let result = match arg {
+                        "+" => a + b,
+                        "-" => a - b,
+                        "*" => a * b,
+                        "/" => a / b,
+                        "%" => a % b,
+                        _ => unreachable!(),
+                    };
+                    nums.push(result);
+                } else {
+                    println!("Error");
+                    return;
+                }
             }
         }
-        if !number.is_empty() {
-           nums.push(number.parse::<i32>().unwrap()); 
-        }
     }
-    if nums.len() - 1 != operation.len() {
+    if nums.len() == 1 {
+        println!("{}", nums[0]);
+    } else {
         println!("Error");
-        return;
     }
-    let mut res = nums[0];
-    for i in 0..operation.len() {
-        if operation[i] == '+' {
-            res += nums[i + 1]
-        }
-
-        if operation[i] == '-' {
-            res -= nums[i + 1]
-        }
-
-        if operation[i] == '*' {
-            res *= nums[i + 1]
-        }
-
-        if operation[i] == '/' {
-            res /= nums[i + 1]
-        }
-
-        if operation[i] == '%' {
-            res %= nums[i + 1]
-        }
-    }
-    println!("{}", res)
+    println!("{}", nums[0])
 }
 
 #[cfg(test)]
 mod tests {
     use std::process::Command;
 
-    const MANIFEST_PATH: &str = "../src/test.rs";
+    const MANIFEST_PATH: &str = "../rpn/Cargo.toml";
 
     fn run(s: &str) -> String {
         let output = Command::new("cargo")
             .arg("run")
-            .arg("--manifest-path")
-            .arg(MANIFEST_PATH)
+            // .arg("--manifest-path")
+            // .arg(MANIFEST_PATH)
             .arg(s)
             .output()
             .expect("Failed to execute command");
