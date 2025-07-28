@@ -1,19 +1,17 @@
 use std::fs::File;
-use std::io::ErrorKind;
+use std::io::{ErrorKind, Write};
 
-fn main() {
-    let greeting_file = File::open("hello.txt").unwrap_or_else(|error| {
+use std::path::Path;
+
+pub fn open_or_create<P: AsRef<Path>>(path: &P, content: &str) {
+    let mut greeting_file = File::open(path).unwrap_or_else(|error| {
         if error.kind() == ErrorKind::NotFound {
-            File::create("hello.txt").unwrap_or_else(|error| {
+            File::create(path).unwrap_or_else(|error| {
                 panic!("Problem creating the file: {error:?}");
             })
         } else {
             panic!("Problem opening the file: {error:?}");
         }
     });
-}
-use std::path::Path;
-
-pub fn open_or_create<P: AsRef<Path>>(path: &P, content: &str) {
-    todo!()
+    greeting_file.write(content.as_bytes()).unwrap();
 }
