@@ -28,7 +28,6 @@ impl One {
 #[cfg(test)]
 mod tests {
     use super::*; // Import One, create_nested, etc.
-
     fn create_nested(value: Option<u16>) -> One {
         One {
             first_layer: Some(Two {
