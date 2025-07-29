@@ -14,7 +14,7 @@ pub fn counting_words(words: &str) -> HashMap<String, u32> {
         }
         key = key.to_lowercase();
         if res.contains_key(&key) {
-            res.insert(key.clone(), res[&key] + 1);
+            res.insert(key.to_string(), res[&key] + 1);
         } else if !key.is_empty(){
             res.insert(key, 1);
         }

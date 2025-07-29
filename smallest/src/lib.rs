@@ -2,12 +2,12 @@ use std::collections::HashMap;
 pub fn smallest(h: HashMap<&str, i32>) -> i32 {
 //  let mut min: <i32 as Example>::MAX;
     let mut min =  i32::MAX;
-    for (_, value) in &h {
+    for (_, value) in h {
         // if min == 0 {
         // min = *value;
         // }
-        if min > *value {
-            min = *value;
+        if min > value {
+            min = value;
         }
     }
     min

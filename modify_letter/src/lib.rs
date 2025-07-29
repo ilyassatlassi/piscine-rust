@@ -22,9 +22,9 @@ pub fn remove_letter_insensitive(s: &str, letter: char) -> String {
 
 pub fn swap_letter_case(s: &str, letter: char) -> String {
     let mut res = String::new();
-    let to_lower = letter.to_lowercase().next().unwrap();
+    let to_lower = letter.to_lowercase().next();
     for c in s.chars() {
-        let char = c.to_lowercase().next().unwrap();
+        let char = c.to_lowercase().next();
         if char == to_lower {
             if c.is_lowercase() {
                 res.push(c.to_uppercase().next().unwrap());
