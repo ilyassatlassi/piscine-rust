@@ -5,11 +5,9 @@ pub struct CipherError {
 }
 
 pub fn cipher(original: &str, ciphered: &str) -> Result<(), CipherError> {
-    if original.is_empty() || ciphered.is_empty() {
-        return
-        Err(CipherError {
-            expected: ciphered.to_string(),
-        })
+    if original.is_empty() && ciphered.is_empty() {
+        return Ok(())
+       
     }
     let mut cmp = String::new();
     for char in original.chars() {
@@ -25,10 +23,10 @@ pub fn cipher(original: &str, ciphered: &str) -> Result<(), CipherError> {
     }
     // println!("{}", cmp);
     if cmp == ciphered {
-        return Ok(());
+        return Ok(())
     }
     Err(CipherError {
-        expected: ciphered.to_string(),
+        expected: cmp,
     })
     // todo!()
 }
