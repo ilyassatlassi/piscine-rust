@@ -9,7 +9,7 @@ pub fn cipher(original: &str, ciphered: &str) -> Result<(), CipherError> {
         return
         Err(CipherError {
             expected: ciphered.to_string(),
-        });
+        })
     }
     let mut cmp = String::new();
     for char in original.chars() {
