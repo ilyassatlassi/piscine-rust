@@ -8,17 +8,37 @@ pub enum Security {
 
 pub fn fetch_data(server: Result<&str, &str>, security_level: Security) -> String {
     // let mut  res = String::new();
-    match server {
-        Ok(res) => return res.to_string(),
-        Err(url) => match security_level {
-            Security::Unknown => panic!("{}", url),
-            Security::Message => panic!("ERROR: program stops"),
-            Security::Warning => "WARNING: check the server".to_string(),
-            Security::NotFound => "Not found: ".to_string() + url,
-            Security::UnexpectedUrl => panic!("{}", url),
+    match security_level {
+        Security::Unknown => server.unwrap().to_owned(),
+        Security::Message => match server {
+            Ok(url) => url.to_string(),
+            Err(e) => panic!("ERROR: program stops"),
         },
-        // return res;
+        Security::Warning => match server {
+            Ok(url) => url.to_string(),
+            Err(e) => "WARNING: check the server".to_string(),
+        },
+        Security::NotFound => match server {
+            Ok(url) => url.to_string(),
+            Err(e) => "Not found: ".to_string() + e,
+        },
+
+        Security::UnexpectedUrl => server.unwrap_err().to_owned(),
+        _ => unreachable!(),
     }
+    // match server {
+    //     Ok(res) => return res.to_string(),
+    //     Err(url) => match security_level {
+    //         Security::Unknown => {
+    //             panic!("called `Result::unwrap()` on an `Err` value: \"ERROR CRITICAL\"")
+    //         }
+    //         Security::Message => panic!("ERROR: program stops"),
+    //         Security::Warning => "WARNING: check the server".to_string(),
+    //         Security::NotFound => "Not found: ".to_string() + url,
+    //         Security::UnexpectedUrl => url.to_string(),
+    //     },
+    //     // return res;
+    // }
 
     // todo!()
 }

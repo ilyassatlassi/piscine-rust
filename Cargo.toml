@@ -1,7 +1,7 @@
 [package]
 name = "piscine-rust"
 version = "0.1.0"
-edition = "2024"
+edition = "2021"
 
 [dependencies]
 scalar = {path="scalar"}

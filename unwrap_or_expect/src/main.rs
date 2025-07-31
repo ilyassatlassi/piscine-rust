@@ -1,9 +1,14 @@
 use unwrap_or_expect::*;
 
 fn main() {
-    println!("{}", fetch_data(Ok("server1.com"), Security::Warning));
-    println!("{}", fetch_data(Err("server.com"), Security::Warning));
-    println!("{}", fetch_data(Err("server2.com"), Security::UnexpectedUrl));
+    // println!("{}", fetch_data(Ok("server1.com"), Security::Warning));
+    // println!("{}", fetch_data(Err("server.com"), Security::Warning));
+    // println!("{}", fetch_data(Err("server2.com"), Security::NotFound));
+    println!(
+        "{}",
+        fetch_data(Ok("malicious_server.com"), Security::UnexpectedUrl)
+    );
+    // println!("{}", fetch_data(Err("ERROR CRITICAL"), Security::Unknown))
 
     // Panics with no custom message
     // fetch_data(Err("ERROR CRITICAL"), Security::Unknown);
