@@ -3,9 +3,9 @@ use chrono::{Local, Utc};
 #[derive(Debug, Eq, PartialEq)]
 pub struct FormError {
     // expected public fields
-    form_values: ( &'static str, String),
-    date: String,
-    err: &'static str,
+    pub form_values: (&'static str, String),
+    pub date: String,
+    pub err: &'static str,
 }
 
 impl FormError {
@@ -47,10 +47,7 @@ impl Form {
                 .password
                 .chars()
                 .any(|char| char.is_ascii_punctuation())
-            && self
-                .password
-                .chars()
-                .any(|char| char.is_ascii_digit()))
+            && self.password.chars().any(|char| char.is_ascii_digit()))
         {
             return Err(FormError::new(
                 "password",
