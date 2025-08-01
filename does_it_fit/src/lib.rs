@@ -1,6 +1,8 @@
 pub mod areas_volumes;
 
 use areas_volumes::*;
+
+#[inline]
 pub fn area_fit(
     (x, y): (usize, usize),
     kind: areas_volumes::GeometricalShapes,
@@ -21,6 +23,7 @@ pub fn area_fit(
     // todo!()
 }
 
+#[inline]
 pub fn volume_fit(
     (x, y, z): (usize, usize, usize),
     kind: areas_volumes::GeometricalVolumes,
