@@ -1,6 +1,6 @@
 pub mod areas_volumes;
 
-use areas_volumes::*;
+pub use areas_volumes::*;
 
 #[inline]
 pub fn area_fit(
