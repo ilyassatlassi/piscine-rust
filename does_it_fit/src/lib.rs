@@ -1,6 +1,6 @@
 pub mod areas_volumes;
 
-use areas_volumes::*;
+use crate::areas_volumes::*;
 pub fn area_fit(
     (x, y): (usize, usize),
     kind: areas_volumes::GeometricalShapes,
@@ -17,7 +17,6 @@ pub fn area_fit(
         GeometricalShapes::Circle => (x * y) as f64 > areas_volumes::circle_area(a) * times as f64,
 
         GeometricalShapes::Square => (x * y) > areas_volumes::square_area(a) * times,
-        _ => false,
     }
     // todo!()
 }
@@ -47,7 +46,6 @@ pub fn volume_fit(
         GeometricalVolumes::Sphere => {
             (x * y * z) as f64 > areas_volumes::sphere_volume(a) * times as f64
         }
-        _ => false,
     }
     // todo!()
 }
