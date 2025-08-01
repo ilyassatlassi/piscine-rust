@@ -41,7 +41,7 @@ impl TodoList {
                     };
                     Ok(new_todo)
                 }
-                Err(e) => Err(Box::new(err::ParseErr::Malformed(Box::new(e)))),
+                Err(e) => Err(Box::new(ParseErr::Malformed(Box::new(e)))),
             },
             Err(e) => Err(Box::new(err::ReadErr {
                 child_err: Box::new(e),

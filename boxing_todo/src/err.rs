@@ -16,8 +16,9 @@ impl Display for ParseErr {
 impl Error for ParseErr {
     fn source(&self) -> Option<&(dyn Error + 'static)> {
         match self {
-           ParseErr::Empty => None, 
-           ParseErr::Malformed(e)=> Some(e.as_ref())
+            ParseErr::Empty => None,
+            _ => Some(self),
+            // ParseErr::Malformed(e) => Some(e.as_ref()),
         }
     }
 }
@@ -25,12 +26,12 @@ impl Error for ParseErr {
 #[derive(Debug)]
 pub struct ReadErr {
     // expected public fields
-    pub  child_err: Box<dyn Error>,
+    pub child_err: Box<dyn Error>,
 }
 
 impl Display for ReadErr {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        write!(f, "{}", self.child_err)
+        write!(f, "{}", "Failed to read todo file")
     }
 }
 
