@@ -1,8 +1,8 @@
 use does_it_fit::*;
 // mod  areas_volumes;
-
+use crate::areas_volumes::GeometricalVolumes;
+use crate::areas_volumes::GeometricalShapes;
 // use crate::areas_volumes::{GeometricalShapes, GeometricalVolumes};
-use does_it_fit::areas_volumes::{GeometricalShapes, GeometricalVolumes};
 
 fn main() {
     println!(
