@@ -34,10 +34,9 @@ pub fn highest_paid_employee(mall: &Mall) -> Vec<(&String, &Employee)> {
                     res.clear();
                     res.push((name, employee));
                     max = employee.salary;
+                } else if (employee.salary - max).abs() < f64::MIN {
+                    res.push((name, employee));
                 }
-                //  else if (employee.salary - max).abs() < f64::EPSILON {
-                //     res.push((name, employee));
-                // }
             }
         }
     }
