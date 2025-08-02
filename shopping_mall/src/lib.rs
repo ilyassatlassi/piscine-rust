@@ -79,9 +79,9 @@ pub fn cut_or_raise(mall: &mut Mall) {
             for (key, employee) in &mut store.employees {
                 let hour = (employee.working_hours.1 - employee.working_hours.0);
                 if hour >= 10 {
-                    employee.salary = (employee.salary * 1.1 * 1000.).round() / 1000.;
+                    employee.raise(employee.salary * 0.1);
                 } else {
-                    employee.salary = (employee.salary * 0.9 * 1000.).round() / 1000.;
+                    employee.cut(employee.salary * 0.1);
                 }
             }
         }
