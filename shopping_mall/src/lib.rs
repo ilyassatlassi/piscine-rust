@@ -21,7 +21,7 @@ pub fn biggest_store(mall: &Mall) -> (String, Store) {
     }
     return (name.to_string(), res);
 }
-pub fn highest_paid_employee(mall: &Mall) -> (String, Vec<Employee>) {
+pub fn highest_paid_employee(mall: &Mall) -> Vec<(String, Vec<Employee>)> {
     let mut res = Vec::new();
     let mut empl = Employee {
         age: 0,
@@ -44,7 +44,7 @@ pub fn highest_paid_employee(mall: &Mall) -> (String, Vec<Employee>) {
         }
     }
     res.push(empl);
-    return (name.to_string(), res);
+    return vec![(name.to_string(), res)]
 }
 
 pub fn nbr_of_employees(mall: &Mall) -> usize {
