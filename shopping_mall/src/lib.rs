@@ -21,31 +21,26 @@ pub fn biggest_store(mall: &Mall) -> (String, Store) {
     }
     return (name.to_string(), res);
 }
-pub fn highest_paid_employee(mall: &Mall) -> Vec<(String, Employee)> {
+
+pub fn highest_paid_employee(mall: &Mall) -> Vec<(&String, &Employee)> {
     let mut res = Vec::new();
-    let mut empl = Employee {
-        age: 0,
-        working_hours: (0, 0),
-        salary: 0.,
-    };
-    let mut max = 0.;
-    let mut name = "";
-    let floor = &mall.floors;
-    for (_, val) in floor {
-        for (_, store) in &val.stores {
-            for (key, employee) in &store.employees {
+    let mut max = 0.0;
+
+    for floor in mall.floors.values() {
+        for store in floor.stores.values() {
+            for (name, employee) in &store.employees {
                 if employee.salary > max {
+                    res.clear();
+                    res.push((name, employee));
                     max = employee.salary;
-                    // res = res.clone();
-                    name = key;
-                    empl = employee.clone();
+                } else if (employee.salary - max).abs() < f64::EPSILON {
+                    res.push((name, employee));
                 }
             }
         }
     }
-    res.push((name.to_string(), empl));
 
-    return res;
+    res
 }
 
 pub fn nbr_of_employees(mall: &Mall) -> usize {
