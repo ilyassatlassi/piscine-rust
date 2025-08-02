@@ -7,9 +7,9 @@ pub fn expected_variable(compare: &str, expected: &str) -> Option<String> {
     } 
 
     // Some("".to_string())
-    //let compare = compare.to_lowercase();
+    let compare = compare.to_lowercase();
     let expected = expected.to_lowercase();
-    if !compare.is_case(Case::Camel) && !compare.to_lowercase().is_case(Case::Snake) {
+    if !compare.is_case(Case::Camel) && !compare.is_case(Case::Snake) {
         println!("compare is not camel nor snake {}", compare);
         return None;
     }
