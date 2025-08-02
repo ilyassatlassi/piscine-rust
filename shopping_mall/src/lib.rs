@@ -1,0 +1,93 @@
+mod mall;
+pub use mall::*;
+
+use std::collections::HashMap;
+
+pub fn biggest_store(mall: &Mall) -> (String, Store) {
+    let mut res = Store::new(HashMap::<String, mall::Employee>::new(), 0);
+    let mut max = 0;
+    let mut name = "";
+    let floor = &mall.floors;
+    for (_, val) in floor {
+        for (key, store) in &val.stores {
+            if store.square_meters > max {
+                max = store.square_meters;
+                // res = res.clone();
+                res.employees = store.employees.clone();
+                res.square_meters = store.square_meters;
+                name = key;
+            }
+        }
+    }
+    return (name.to_string(), res);
+}
+pub fn highest_paid_employee(mall: &Mall) -> (String, Vec<Employee>) {
+    let mut res = Vec::new();
+    let mut empl = Employee {
+        age: 0,
+        working_hours: (0, 0),
+        salary: 0.,
+    };
+    let mut max = 0.;
+    let mut name = "";
+    let floor = &mall.floors;
+    for (_, val) in floor {
+        for (_, store) in &val.stores {
+            for (key, employee) in &store.employees {
+                if employee.salary > max {
+                    max = employee.salary;
+                    // res = res.clone();
+                    name = key;
+                    empl = employee.clone();
+                }
+            }
+        }
+    }
+    res.push(empl);
+    return (name.to_string(), res);
+}
+
+pub fn nbr_of_employees(mall: &Mall) -> usize {
+    let mut res = 0;
+    let floor = &mall.floors;
+    for (_, val) in floor {
+        for (_, store) in &val.stores {
+            for (key, employee) in &store.employees {
+                res += 1;
+            }
+        }
+    }
+    res += mall.guards.len();
+    return res;
+}
+
+pub fn check_for_securities(mall: &mut Mall, mut guard: HashMap<String, Guard>) {
+    let mut total_size = 0;
+    let floor = &mall.floors;
+    total_size = floor.values().map(|val| val.size_limit).sum();
+
+    let total_areas = total_size / 200;
+
+    for (name, guard) in guard {
+        if mall.guards.len() as u64 >= total_areas {
+            break;
+        }
+        mall.hire_guard(name, guard);
+    }
+}
+
+pub fn cut_or_raise(mall: &mut Mall) {
+    let floor = &mut mall.floors;
+    for (_, val) in floor {
+        for (_, store) in &mut val.stores {
+            for (key, employee) in &mut store.employees {
+                let hour = (employee.working_hours.1 - employee.working_hours.0);
+                if hour >= 10 {
+                    employee.salary = (employee.salary * 1.1 * 1000.).round() / 1000.;
+                } else {
+                    employee.salary = (employee.salary * 0.9 * 1000.).round() / 1000.;
+                }
+            }
+        }
+    }
+}
