@@ -1,6 +1,7 @@
 mod mall;
 pub use mall::*;
 
+use core::f64;
 use std::collections::HashMap;
 
 pub fn biggest_store(mall: &Mall) -> (String, Store) {
@@ -24,7 +25,7 @@ pub fn biggest_store(mall: &Mall) -> (String, Store) {
 
 pub fn highest_paid_employee(mall: &Mall) -> Vec<(&String, &Employee)> {
     let mut res = Vec::new();
-    let mut max = 0.0;
+    let mut max = f64::MIN;
 
     for floor in mall.floors.values() {
         for store in floor.stores.values() {
