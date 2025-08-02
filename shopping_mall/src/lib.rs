@@ -25,7 +25,7 @@ pub fn biggest_store(mall: &Mall) -> (String, Store) {
 
 pub fn highest_paid_employee(mall: &Mall) -> Vec<(&String, &Employee)> {
     let mut res = Vec::new();
-    let mut max = f64::MIN;
+    let mut max = 0.;
 
     for floor in mall.floors.values() {
         for store in floor.stores.values() {
@@ -34,7 +34,7 @@ pub fn highest_paid_employee(mall: &Mall) -> Vec<(&String, &Employee)> {
                     res.clear();
                     res.push((name, employee));
                     max = employee.salary;
-                } else if (employee.salary - max).abs() < f64::MIN {
+                } else if (employee.salary - max).abs() < f64::EPSILON {
                     res.push((name, employee));
                 }
             }
