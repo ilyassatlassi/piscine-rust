@@ -1,8 +1,8 @@
 mod mobs;
-use mobs::*;
-use boss::*;
-use members::Member;
-use members::*;
+pub use mobs::*;
+pub use boss::*;
+pub use members::Member;
+pub use members::*;
 
 #[test]
 fn create_boss() {
@@ -114,17 +114,17 @@ fn mob_recruit() {
     );
 }
 
-// #[test]
-// fn member_get_promotion() {
-//     let (mut mob, _) = mobs();
+#[test]
+fn member_get_promotion() {
+    let (mut mob, _) = mobs();
 
-//     let member = mob.members.get_mut("Benny Eggs").unwrap();
+    let member = mob.members.get_mut("Benny Eggs").unwrap();
 
-//     member.get_promotion();
-//     assert_eq!(member.role, member::Role::Caporegime);
-//     member.get_promotion();
-//     assert_eq!(member.role, member::Role::Underboss);
-// }
+    member.get_promotion();
+    assert_eq!(member.role, member::Role::Caporegime);
+    member.get_promotion();
+    assert_eq!(member.role, member::Role::Underboss);
+}
 
 #[test]
 #[should_panic]
