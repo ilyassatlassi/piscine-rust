@@ -1,9 +1,9 @@
 mod mobs;
 pub use mobs::*;
 pub use boss::*;
-pub use member::Member;
-pub use member::*;
-// pub use member::Member as member;
+pub use members::Member;
+pub use members::*;
+pub use members as member
 
 #[test]
 fn create_boss() {
