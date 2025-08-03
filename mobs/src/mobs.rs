@@ -1,5 +1,5 @@
-pub mod members;
-use members::*;
+pub mod member;
+use member::*;
 
 pub mod boss;
 use boss::*;
