@@ -1,4 +1,4 @@
-fn score(str: &str) -> u64 {
+pub fn score(str: &str) -> u64 {
     let mut res = 0;
     for ch in str.chars() {
         if "aeioulnrst".contains(ch.to_ascii_lowercase()) {
@@ -19,14 +19,6 @@ fn score(str: &str) -> u64 {
     }
     res
 }
-//  'a' | 'e' | 'i' | 'o' | 'u' | 'l' | 'n' | 'r' | 's' | 't' => 1,
-//             'd' | 'g' => 2,
-//             'b' | 'c' | 'm' | 'p' => 3,
-//             'f' | 'h' | 'v' | 'w' | 'y' => 4,
-//             'k' => 5,
-//             'j' | 'x' => 8,
-//             'q' | 'z' => 10,
-//             _ => 0,
 
 #[test]
 fn test_simple() {
