@@ -6,7 +6,7 @@ pub fn parse_into_boxed(s: String) -> Vec<Box<u32>> {
             let num = (num.parse::<f32>().unwrap() * 1000.) as u32;
             res.push(Box::new(num));
         } else {
-            let num = word.parse::<u32>().unwrap() * 1000;
+            let num = word.parse::<u32>().unwrap();
             res.push(Box::new(num));
         }
     }
