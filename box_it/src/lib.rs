@@ -1,6 +1,6 @@
 pub fn parse_into_boxed(s: String) -> Vec<Box<u32>> {
     let mut res = Vec::new();
-    for word in &mut s.split_whitespace() {
+    for word in &mut s.split_whitespace().iter {
         if word.ends_with("k") {
             let num = word.replace("k", "");
             let num = (num.parse::<f32>().unwrap() * 1000.) as u32;
