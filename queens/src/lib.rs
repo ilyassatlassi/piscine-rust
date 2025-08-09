@@ -14,7 +14,7 @@ impl ChessPosition {
         if (rank > 7 || rank < 0) || (file > 7 || file < 0) {
             return None;
         }
-        Some(ChessPosition { rank, file })
+        Some(Self { rank, file })
     }
 }
 

@@ -1,12 +1,14 @@
 pub fn reverse_it(v: i32) -> String {
     let mut is_Negative: bool = false;
-    let mut num: u32 = 0;
+    let mut num = v as i64;
     if v < 0 {
-        num = v.unsigned_abs();
+        // num = v.unsigned_abs();
         is_Negative = true;
-    } else {
-        num = v as u32;
-    }
+        num = -num;
+    } 
+    // else {
+    //     num = v as u32;
+    // }
 
     let mut res: String = num.to_string().chars().rev().collect();
     let num = num.to_string();
