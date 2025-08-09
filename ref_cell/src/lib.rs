@@ -12,7 +12,7 @@ impl Tracker {
             max,
         }
     }
-    pub fn set_value(&mut self, value: &Rc<usize>) {
+    pub fn set_value(& self, value: &Rc<usize>) {
     *self.value.borrow_mut() = Rc::strong_count(value);
     let percentage = (Rc::strong_count(value) * 100) / self.max;
     if percentage >= 70 && percentage <= 100 {
@@ -25,7 +25,7 @@ impl Tracker {
             .push(format!("Error: You can't go over your quota!"));
     }
     }
-    pub fn peek(&mut self, value: &Rc<usize>) {
+    pub fn peek(& self, value: &Rc<usize>) {
         *self.value.borrow_mut() = Rc::strong_count(value);
         let percentage = (Rc::strong_count(value) * 100) / self.max;
         self.messages.borrow_mut().push(format!(
