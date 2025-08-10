@@ -34,7 +34,20 @@ impl Queue {
         }
     }
     pub fn invert_queue(&mut self) {
-        
+        let mut current = &mut self.node;
+        let mut prev: Link = None;
+        let mut next: Link = None;
+        if let Some(val) = current {
+            if val.next_person.is_none() {
+                next = val.as_mut().next_person;
+            }
+        }
+        while let Some(val) = current {
+            if val.next_person.is_none() {
+                let removed = current.take().unwrap();
+            }
+            current = &mut current.as_mut().unwrap().next_person;
+        }
     }
     pub fn rm(&mut self) -> Option<(String, i32)> {
         let mut current = &mut self.node;
@@ -56,6 +69,6 @@ impl Queue {
             }
             current = &current.as_ref().unwrap().next_person;
         }
-    None
+        None
     }
 }
