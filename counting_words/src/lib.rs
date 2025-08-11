@@ -13,9 +13,10 @@ pub fn counting_words(words: &str) -> HashMap<String, u32> {
             key.push(c);
         }
         key = key.to_lowercase();
-        if res.contains_key(&key) {
+        if res.contain_key(&key) {
             res.insert(key.to_string(), res[&key] + 1);
         } else if !key.is_empty(){
+            // res.inset_or
             res.insert(key, 1);
         }
     }

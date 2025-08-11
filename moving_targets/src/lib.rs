@@ -43,22 +43,7 @@ impl Field {
         }
         None
     }
-    // pub fn pop(&mut self) -> Option<Target> {
-    //     let mut current = &mut self.head;
-
-    //     loop {
-    //         match current {
-    //             Some(node) if node.next.is_none() => {
-    //                 let removed = current.take();
-    //                 return Some(removed.unwrap().elem);
-    //             }
-    //             Some(node) => {
-    //                 current = &mut node.next;
-    //             }
-    //             None => return None,
-    //         }
-    //     }
-    // }
+  
     pub fn peek(&self) -> Option<&Target> {
         match self.head.as_ref() {
             Some(val) => Some(&val.elem),

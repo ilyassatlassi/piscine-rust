@@ -36,35 +36,53 @@ impl Queue {
     pub fn invert_queue(&mut self) {
         let mut current = self.node.take();
         let mut prev = None;
-        while let Some( mut val) = current {
-            let next = val.next_person.take();
-            // current.as_mut().unwrap().next_persono = prev.take();
-            val.next_person = prev;
-            prev = Some(val); 
-            current = next;
+        loop {
+            match current {
+                // Some(val) if val.next_person.is_none() => {
+
+                //     // return Some((removed.name, removed.discount));
+                // }
+                Some(mut val) => {
+                    let next = val.next_person.take();
+                    val.next_person = prev;
+                    prev = Some(val);
+                    current = next;
+                    // current = &mut val.next_person;
+                }
+                None => break,
+            }
         }
         self.node = prev;
     }
     pub fn rm(&mut self) -> Option<(String, i32)> {
         let mut current = &mut self.node;
-        while let Some(val) = current {
-            if val.next_person.is_none() {
-                let removed = current.take().unwrap();
-                return Some((removed.name, removed.discount));
+        loop {
+            match current {
+                Some(val) if val.next_person.is_none() => {
+                    let removed = current.take().unwrap();
+                    return Some((removed.name, removed.discount));
+                }
+                Some(val) => {
+                    current = &mut val.next_person;
+                }
+                None => return None,
             }
-            current = &mut current.as_mut().unwrap().next_person;
         }
-
-        None
+        // None
     }
     pub fn search(&self, name: &str) -> Option<(String, i32)> {
         let mut current = &self.node;
-        while let Some(val) = current {
-            if val.name == name {
-                return Some((val.name.to_string(), val.discount));
+        loop {
+            match current {
+                Some(val) if name == val.name => {
+                    // let removed = current.take().unwrap();
+                    return Some((val.name.to_string(), val.discount));
+                }
+                Some(val) => {
+                    current = &val.next_person;
+                }
+                None => return None,
             }
-            current = &current.as_ref().unwrap().next_person;
         }
-        None
     }
 }
