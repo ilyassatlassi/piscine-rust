@@ -15,6 +15,10 @@ name = "generics"
 version = "0.1.0"
 
 [[package]]
+name = "generics_list"
+version = "0.1.0"
+
+[[package]]
 name = "matrix_transposition"
 version = "0.1.0"
 

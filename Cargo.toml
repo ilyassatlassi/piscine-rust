@@ -1,4 +1,4 @@
-workspace = { members = ["generics"] }
+workspace = { members = ["generics", "generics_list"] }
 [package]
 name = "piscine-rust"
 version = "0.1.0"
