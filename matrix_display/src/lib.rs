@@ -19,26 +19,47 @@ impl Matrix {
 use std::fmt;
 
 impl fmt::Display for Matrix {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        for i in 0..self.0.len() {
-            write!(f, "(")?;
-            for j in 0..self.0[i].len() {
-                if j > 0 {
-                    write!(f, " ")?;
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+            for i in 0..self.0.len() {
+                write!(f, "(")?;
+                for j in 0..self.0[i].len() {
+                    if j > 0 {
+                        write!(f, " ")?;
+                    }
+                    if j <  self.0[i].len(){
+                        write!(f, "{}", self.0[i][j])?;
+                    }
                 }
-                if j <  self.0[i].len(){
-                    write!(f, "{}", self.0[i][j])?;
+                if i < self.0.len() - 1 {
+                    writeln!(f, ")")?;
+                }else {
+
+                    write!(f, ")")?;
                 }
             }
-            if i < self.0.len() - 1 {
-                writeln!(f, ")")?;
-            }else {
-                
-                write!(f, ")")?;
-            }
-        }
-        Ok(())
+            Ok(())
+        // todo!()
     }
+    // fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+    //     for i in 0..self.0.len() {
+    //         write!(f, "(")?;
+    //         for j in 0..self.0[i].len() {
+    //             if j > 0 {
+    //                 write!(f, " ")?;
+    //             }
+    //             if j <  self.0[i].len(){
+    //                 write!(f, "{}", self.0[i][j])?;
+    //             }
+    //         }
+    //         if i < self.0.len() - 1 {
+    //             writeln!(f, ")")?;
+    //         }else {
+
+    //             write!(f, ")")?;
+    //         }
+    //     }
+    //     Ok(())
+    // }
     // fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
     //     writeln!(&self.0[0][0], {})
     // }
