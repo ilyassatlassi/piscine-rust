@@ -1,30 +1,21 @@
+// use scytale_cipher::*;
 pub fn scytale_decoder(s: String, letters_per_turn: u32) -> Option<String> {
     if s.is_empty() || letters_per_turn == 0 {
         return None;
     }
-    let n_rows = letters_per_turn as usize;
 
-    let col_length = (s.chars().count() + n_rows - 1) / n_rows;
-
-    let mut matrix = vec![vec![' '; col_length]; letters_per_turn as usize];
-
-    for (i, char) in s.chars().enumerate() {
-        let row = i % letters_per_turn as usize;
-        let col = i / letters_per_turn as usize;
-        matrix[row][col] = char;
-    }
-    // print!("{:?}", matrix);
-    let mut decoded = String::new();
-    for row in 0..letters_per_turn as usize {
-        for col in 0..col_length {
-            decoded.push(matrix[row][col]);
+    let mut result = String::new();
+    let s_chars: Vec<char> = s.chars().collect::<Vec<char>>();
+    for j in 0..letters_per_turn {
+        let mut i = j as usize;
+        while i < s.len() {
+            result.push(s_chars[i]);
+            i += letters_per_turn as usize;
         }
     }
 
-    Some(decoded.trim().to_string())
+    Some(result)
 }
-// use scytale_cipher::*;
-
 fn main() {
     println!(
         "\"sec yCtoadle\" size=2 -> {:?}",
