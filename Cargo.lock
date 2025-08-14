@@ -82,3 +82,7 @@ version = "0.1.0"
 [[package]]
 name = "temperature_conv"
 version = "0.1.0"
+
+[[package]]
+name = "vehicles"
+version = "0.1.0"
