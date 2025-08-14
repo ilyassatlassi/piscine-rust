@@ -1,4 +1,4 @@
-workspace = { members = ["generics", "generics_list", "lalgebra_scalar", "matrix", "matrix_ops"] }
+workspace = { members = ["generics", "generics_list", "lalgebra_scalar", "lib", "matrix", "matrix_mult", "matrix_ops"] }
 [package]
 name = "piscine-rust"
 version = "0.1.0"

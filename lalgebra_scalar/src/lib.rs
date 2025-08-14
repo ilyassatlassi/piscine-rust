@@ -1,4 +1,3 @@
-
 use std::ops::{Add, Div, Mul, Sub};
 
 pub trait Scalar: Add + Div + Mul + Sub + std::marker::Sized + Clone {
