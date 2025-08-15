@@ -5,4 +5,3 @@ edition = "2024"
 
 [dependencies]
 lalgebra_scalar = { path = "../lalgebra_scalar"}
-lib = { path = "../lib" }
