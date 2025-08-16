@@ -1,4 +1,3 @@
-workspace = { members = ["delete_prefix", "events","generics", "generics_list", "lalgebra_scalar", "lib", "lifetimes", "matrix", "matrix_mult", "matrix_ops", "vehicles"] }
 [package]
 name = "piscine-rust"
 version = "0.1.0"
