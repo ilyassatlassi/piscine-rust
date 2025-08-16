@@ -30,11 +30,11 @@ impl fmt::Display for Table {
             }
 
             if max_for_each_column[i] < self.headers[i].len() + 2 {
-                max_for_each_column[i] = self.headers[i].len() + 2;
+                max_for_each_column[i] = self.headers[i].len() +2;
             }
             let mut diff = 0;
             if max_for_each_column[i] > self.headers[i].len() {
-                diff = max_for_each_column[i] - self.headers[i].len();
+                diff = max_for_each_column[i] - self.headers[i].chars().count();
                 if diff % 2 == 0 {
                     for _ in 0..diff / 2 {
                         write!(f, " ")?;
@@ -57,6 +57,16 @@ impl fmt::Display for Table {
             }
         }
         writeln!(f, " |")?;
+
+        for i in 0..self.headers.len() {
+            write!(f, "|")?;
+            for _ in 0..max_for_each_column[i] + 2  {
+                
+            write!(f, "-")?;
+            }
+        }
+        writeln!(f, "|")?;
+
         for row in &self.body {
             for i in 0..row.len() {
                 if i > 0 && i < row.len() - 1 {
@@ -96,7 +106,7 @@ impl fmt::Display for Table {
             writeln!(f, " |")?;
         }
 
-                    write!(f, "{:?} ", max_for_each_column)?;
+        write!(f, "{:?} ", max_for_each_column)?;
         // writeln!(f, "|---------+-------------+-----------+-------------|")?;
         Ok(())
     }
