@@ -51,7 +51,34 @@ impl fmt::Display for Notification {
         Ok(())
     }
 }
+#[derive(Debug)]
+struct DurationInHours {
+    hours: i64,
+    minutes: i64,
+    seconds: i64,
+}
 
+impl From<&Duration> for DurationInHours {
+    fn from(duration: &Duration) -> DurationInHours {
+        let mut left = duration.num_seconds();
+        let hours = left / 3600;
+        left %= 3600;
+        let minutes = left / 60;
+        left %= 60;
+        let seconds = left;
+        DurationInHours {
+            hours,
+            minutes,
+            seconds,
+        }
+    }
+}
+
+impl fmt::Display for DurationInHours {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "{}H:{}M:{}S", self.hours, self.minutes, self.seconds)
+    }
+}
 use Event::*;
 
 impl<'a> Event<'a> {
