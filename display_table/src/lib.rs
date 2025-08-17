@@ -5,113 +5,92 @@ pub struct Table {
     pub headers: Vec<String>,
     pub body: Vec<Vec<String>>,
 }
-
 impl fmt::Display for Table {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        if self.body.len() == 0 {
+        if  self.headers.len() == 0 {
             return Ok(());
         }
+
+        // Calculate max column widths (including headers)
         let mut max_for_each_column = vec![0; self.headers.len()];
-        // let mut length = self.body.len();
         for j in 0..self.headers.len() {
-            for i in 0..self.body.len() {
-                if max_for_each_column[j] < self.body[i][j].len() {
-                    max_for_each_column[j] = self.body[i][j].len();
-                    // write!(f, "{:?} ", max_for_each_column)?
+            max_for_each_column[j] = self.headers[j].len();
+            for row in &self.body {
+                if max_for_each_column[j] < row[j].len() {
+                    max_for_each_column[j] = row[j].len();
                 }
             }
+          
         }
 
+        // Print headers with centered alignment
         for i in 0..self.headers.len() {
-            if i > 0 && i < self.headers.len() - 1 {
-                write!(f, " | ")?;
-            } else {
-                write!(f, "| ")?;
+            write!(f, "| ")?;
+            let diff = max_for_each_column[i] - self.headers[i].chars().count();
+
+            let left_pad = diff / 2;
+            let right_pad = diff - left_pad;
+
+            // Print left padding
+            for _ in 0..left_pad {
+                write!(f, " ")?;
             }
 
-            if max_for_each_column[i] < self.headers[i].len() + 2 {
-                max_for_each_column[i] = self.headers[i].len() +2;
+            // Print header
+            write!(f, "{}", self.headers[i])?;
+
+            // Print right padding
+            for _ in 0..right_pad {
+                write!(f, " ")?;
             }
-            let mut diff = 0;
-            if max_for_each_column[i] > self.headers[i].len() {
-                diff = max_for_each_column[i] - self.headers[i].chars().count();
-                if diff % 2 == 0 {
-                    for _ in 0..diff / 2 {
-                        write!(f, " ")?;
-                    }
 
-                    write!(f, "{}", self.headers[i])?;
-
-                    for _ in 0..diff / 2 {
-                        write!(f, " ")?;
-                    }
-                } else {
-                    write!(f, "{}", self.headers[i])?;
-
-                    for _ in 0..diff {
-                        write!(f, " ")?;
-                    }
-                }
-            } else {
-                write!(f, "{}", self.headers[i])?;
-            }
+            write!(f, " ")?; // Extra space before next column
         }
-        writeln!(f, " |")?;
+        writeln!(f, "|")?;
 
+        // Print separator line
+        write!(f, "|")?;
         for i in 0..self.headers.len() {
-            write!(f, "|")?;
-            for _ in 0..max_for_each_column[i] + 2  {
-                
-            write!(f, "-")?;
+            if i > 0 {
+                write!(f, "+")?;
+            }
+            for _ in 0..max_for_each_column[i] + 2 {
+                // +2 for padding
+                write!(f, "-")?;
             }
         }
         writeln!(f, "|")?;
 
+        // Print body rows with centered alignment
         for row in &self.body {
             for i in 0..row.len() {
-                if i > 0 && i < row.len() - 1 {
-                    write!(f, " | ")?;
-                } else {
-                    write!(f, "| ")?;
+                write!(f, "| ")?;
+                let diff = max_for_each_column[i] - row[i].len();
+
+                let left_pad = diff / 2;
+                let right_pad = diff - left_pad;
+
+                // Print left padding
+                for _ in 0..left_pad {
+                    write!(f, " ")?;
                 }
 
-                if max_for_each_column[i] < row[i].len() {
-                    max_for_each_column[i] = row[i].len();
+                // Print cell content
+                write!(f, "{}", row[i])?;
+
+                // Print right padding
+                for _ in 0..right_pad {
+                    write!(f, " ")?;
                 }
-                let mut diff = 0;
-                if max_for_each_column[i] > row[i].len() {
-                    diff = max_for_each_column[i] - row[i].len();
-                    if diff % 2 == 0 {
-                        for _ in 0..diff / 2 {
-                            write!(f, " ")?;
-                        }
 
-                        write!(f, "{}", row[i])?;
-
-                        for _ in 0..diff / 2 {
-                            write!(f, " ")?;
-                        }
-                    } else {
-                        write!(f, "{}", row[i])?;
-
-                        for _ in 0..diff {
-                            write!(f, " ")?;
-                        }
-                    }
-                } else {
-                    write!(f, "{}", row[i])?;
-                }
+                write!(f, " ")?; // Extra space before next column
             }
-
-            writeln!(f, " |")?;
+            writeln!(f, "|")?;
         }
 
-        write!(f, "{:?} ", max_for_each_column)?;
-        // writeln!(f, "|---------+-------------+-----------+-------------|")?;
         Ok(())
     }
 }
-
 impl Table {
     pub fn new() -> Table {
         Table {
