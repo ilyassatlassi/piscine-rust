@@ -22,35 +22,25 @@ impl Queue {
                 discount,
                 name,
                 next_person: None,
-            }))
+            }));
         } else {
-            let prev = self.node.take();
-
+            let current = self.node.take();
             self.node = Some(Box::new(Person {
                 discount,
                 name,
-                next_person: prev,
-            }))
+                next_person: current,
+            }));
         }
     }
     pub fn invert_queue(&mut self) {
         let mut current = self.node.take();
         let mut prev = None;
-        loop {
-            match current {
-                // Some(val) if val.next_person.is_none() => {
-
-                //     // return Some((removed.name, removed.discount));
-                // }
-                Some(mut val) => {
-                    let next = val.next_person.take();
-                    val.next_person = prev;
-                    prev = Some(val);
-                    current = next;
-                    // current = &mut val.next_person;
-                }
-                None => break,
-            }
+        while let Some(mut val) = current {
+            let next = val.next_person.take();
+            val.next_person = prev;
+            prev = Some(val);
+            // println!("{:?}", prev.as_ref().unwrap().name);
+            current = next;
         }
         self.node = prev;
     }
@@ -60,27 +50,39 @@ impl Queue {
             match current {
                 Some(val) if val.next_person.is_none() => {
                     let removed = current.take().unwrap();
-                    return Some((removed.name, removed.discount));
+                    return Some((removed.name.to_string(), removed.discount));
                 }
-                Some(val) => {
-                    current = &mut val.next_person;
-                }
+                Some(val) => current = &mut val.next_person,
+
                 None => return None,
             }
         }
-        // None
     }
+    // pub fn rm(&mut self) -> Option<(String, i32)> {
+    //     let mut current = &mut self.node;
+    //     // let mut res = None;
+
+    //     while let Some( val) = current {
+    //         if val.next_person.is_none() {
+    //             // This is the last node, take it out
+    //             let removed = current.take().unwrap();
+    //             return Some((removed.name, removed.discount));
+    //         }
+    //         current = &mut current.as_mut().unwrap().next_person;
+    //     }
+
+    //     None
+    // }
+
     pub fn search(&self, name: &str) -> Option<(String, i32)> {
         let mut current = &self.node;
         loop {
             match current {
-                Some(val) if name == val.name => {
-                    // let removed = current.take().unwrap();
-                    return Some((val.name.to_string(), val.discount));
+                Some(val) if val.name == name => {
+                    break Some((val.name.to_string(), val.discount));
                 }
-                Some(val) => {
-                    current = &val.next_person;
-                }
+                Some(val) => current = &val.next_person,
+
                 None => return None,
             }
         }
