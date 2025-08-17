@@ -14,13 +14,13 @@ fn main() {
     println!("{:?}", list.search("Marie"));
     println!("{:?}", list.search("Alice"));
     println!("{:?}", list.search("someone"));
-    // output:
-    // Some(("Marie", 20))
-    // Some(("Alice", 35))
-    // None
+    // // output:
+    // // Some(("Marie", 20))
+    // // Some(("Alice", 35))
+    // // None
 
-    println!("removed {:?}", list.rm());
-    println!("removed {:?}", list.rm());
+    // println!("removed {:?}", list.rm());
+    // println!("removed {:?}", list.rm());
     println!("list {:?}", list);
     list.invert_queue();
     println!("inverted list {:?}", list);
