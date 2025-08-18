@@ -10,9 +10,9 @@ pub fn remove_letter_sensitive(s: &str, letter: char) -> String {
 
 pub fn remove_letter_insensitive(s: &str, letter: char) -> String {
     let mut res = String::new();
-    let to_lower = letter.to_lowercase().next();
+    let to_lower = letter.to_ascii_lowercase();
     for c in s.chars() {
-        let char = c.to_lowercase().next();
+        let char = c.to_ascii_lowercase();
         if char != to_lower {
             res.push(c);
         }

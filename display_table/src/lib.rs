@@ -7,7 +7,7 @@ pub struct Table {
 }
 impl fmt::Display for Table {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        if  self.headers.len() == 0 {
+        if self.headers.len() == 0 {
             return Ok(());
         }
 
@@ -20,31 +20,32 @@ impl fmt::Display for Table {
                     max_for_each_column[j] = row[j].len();
                 }
             }
-          
         }
 
         // Print headers with centered alignment
         for i in 0..self.headers.len() {
-            write!(f, "| ")?;
-            let diff = max_for_each_column[i] - self.headers[i].chars().count();
+            // write!(f, "| ")?;
+            // let diff = max_for_each_column[i] - self.headers[i].chars().count();
 
-            let left_pad = diff / 2;
-            let right_pad = diff - left_pad;
+            // let left_pad = diff / 2;
+            // let right_pad = diff - left_pad;
 
-            // Print left padding
-            for _ in 0..left_pad {
-                write!(f, " ")?;
-            }
+            // // Print left padding
+            // for _ in 0..left_pad {
+            //     write!(f, " ")?;
+            // }
 
-            // Print header
-            write!(f, "{}", self.headers[i])?;
+            // // Print header
+            // write!(f, "{}", self.headers[i])?;
 
-            // Print right padding
-            for _ in 0..right_pad {
-                write!(f, " ")?;
-            }
+            // // Print right padding
+            // for _ in 0..right_pad {
+            //     write!(f, " ")?;
+            // }
+            let word = format!("|{:^s$}", self.headers[i], s = max_for_each_column[i] +2);
+            write!(f, "{}", word)?;
 
-            write!(f, " ")?; // Extra space before next column
+            // write!(f, " ")?; // Extra space before next column
         }
         writeln!(f, "|")?;
 
@@ -65,24 +66,25 @@ impl fmt::Display for Table {
         for row in &self.body {
             for i in 0..row.len() {
                 write!(f, "| ")?;
-                let diff = max_for_each_column[i] - row[i].len();
+                // let diff = max_for_each_column[i] - row[i].len();
 
-                let left_pad = diff / 2;
-                let right_pad = diff - left_pad;
+                // let left_pad = diff / 2;
+                // let right_pad = diff - left_pad;
 
-                // Print left padding
-                for _ in 0..left_pad {
-                    write!(f, " ")?;
-                }
+                // // Print left padding
+                // for _ in 0..left_pad {
+                //     write!(f, " ")?;
+                // }
 
-                // Print cell content
-                write!(f, "{}", row[i])?;
+                // // Print cell content
+                // write!(f, "{}", row[i])?;
 
-                // Print right padding
-                for _ in 0..right_pad {
-                    write!(f, " ")?;
-                }
-
+                // // Print right padding
+                // for _ in 0..right_pad {
+                //     write!(f, " ")?;
+                // }
+                let word = format!("{:^s$}", row[i], s = max_for_each_column[i]);
+                write!(f, "{}", word)?;
                 write!(f, " ")?; // Extra space before next column
             }
             writeln!(f, "|")?;

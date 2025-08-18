@@ -1,14 +1,13 @@
-
 pub fn count_factorial_steps(factorial: u64) -> u64 {
-    let mut res:u64 = 1;
-    for i  in 2..factorial {
-       res *= i; 
-    if res == factorial {
-       return i; 
-    }
-    if res > factorial {
-       break; 
-    }
+    let mut res: u64 = 1;
+    for i in 2..factorial {
+        res *= i;
+        if res == factorial {
+            return i;
+        }
+        if res > factorial {
+            break;
+        }
     }
     res = 0;
     res
